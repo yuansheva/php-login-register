@@ -21,6 +21,7 @@ $stmt->close();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Home Page</title>
 
@@ -35,16 +36,17 @@ $stmt->close();
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand">Kelompok 6</a>
+            <a class="navbar-brand">Metabook</a>
             <form class="d-flex">
-                <button class="btn"><a href="profile.php"><i class="fas fa-home"></i>Profil</a></button>
-                <button class="btn"><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></button>
+                <button class="btn"><a href="home.php"><i class="fas fa-home"></i> Home</a></button>
+                <button class="btn"><a href="profile.php"><i class="fas fa-user"></i> Profil</a></button>
+                <button class="btn"><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></button>
             </form>
         </div>
     </nav>
     <div class="card m-3">
         <div class="card-body">
-            Welcome <?= $nama ?>
+            Welcome back, <?= $nama ?>!
         </div>
     </div>
 

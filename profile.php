@@ -24,6 +24,7 @@ $stmt->close();
     <meta charset="utf-8">
     <title>Profile Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <style>
@@ -33,8 +34,10 @@ $stmt->close();
         }
 
         .profile img {
-            width: 300px;
-
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin-bottom: 30px;
         }
 
         button {
@@ -53,24 +56,29 @@ $stmt->close();
         button:hover {
             background-color: #262626;
         }
+
+        td {
+            padding: 3px;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand">Halaman Profile</a>
+            <a class="navbar-brand">Metabook</a>
             <form class="d-flex">
-                <button class="btn"><a href="home.php"><i class="fas fa-home"></i>Home</a></button>
-                <button class="btn"><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></button>
+                <button class="btn"><a href="home.php"><i class="fas fa-home"></i> Home</a></button>
+                <button class="btn"><a href="profile.php"><i class="fas fa-user"></i> Profil</a></button>
+                <button class="btn"><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></button>
             </form>
         </div>
     </nav>
     <div class="card m-3">
         <div class="card-body">
             <div>
-                <button><a href="edit.php"><i class="fas fa-user-edit"></i> Edit data</a></button>
-                <p>Your account details are below:</p>
+                <button><a href="edit.php"><i class="fas fa-cog"></i> Edit Profile</a></button>
+                <p>Your account details are below :</p>
 
                 <div class="profile text-center">
                     <?php
@@ -81,6 +89,7 @@ $stmt->close();
                     <img src="<?= "img/" . $photo ?>">
                 </div>
 
+                <p><b>Personal Info</b></p><hr>
                 <table>
                     <tr>
                         <td>Nama Lengkap</td>
@@ -88,15 +97,20 @@ $stmt->close();
                         <td><?= $nama ?></td>
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td>:</td>
-                        <td><?= $email ?></td>
-                    </tr>
-                    <tr>
                         <td>Username</td>
                         <td>:</td>
                         <td><?= $Username ?></td>
                     </tr>
+                </table>
+
+                <p class="mt-5"><b>Data & Privacy</b></p><hr>
+                <table>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td><?= $email ?></td>
+                    </tr>
+
                     <tr>
                         <td>Password</td>
                         <td>:</td>

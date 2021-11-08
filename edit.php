@@ -33,25 +33,45 @@ $stmt->close();
             text-decoration: none;
             color: white;
         }
+
+        .container {
+            border-style: solid;
+            border-width: 1px;
+            height: 510px;
+            padding: 20px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .tbl {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
     </style>
 </head>
 
 <body class="loggedin">
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand">Halaman Profile</a>
+            <a class="navbar-brand">Metabook</a>
             <form class="d-flex">
-                <button class="btn"><a href="home.php">Home</a></button>
-                <button class="btn"><a href="logout.php">Logout</a></button>
+                <button class="btn"><a href="home.php"><i class="fas fa-home"></i> Home</a></button>
+                <button class="btn"><a href="profile.php"><i class="fas fa-user"></i> Profil</a></button>
+                <button class="btn"><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></button>
             </form>
         </div>
     </nav>
-    <div class="content mt-5">
-        <div class="container">
+    <div class="content mt-5 mb-5">
+        <div class="container rounded shadow">
+            <h2>Edit Profile</h2>
+            <hr>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="mb-4">
                     <label for="profile" class="form-label">Foto Profil</label>
                     <input class="form-control" name="profile" type="file" id="formFile">
+                    <input name="profile" type="hidden" id="formFile" value="<?=$photo?>">
                 </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama<span class="red">*</span></label>
@@ -66,11 +86,11 @@ $stmt->close();
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email<span class="red">*</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="Email" value="<?= $email ?>" require>
+                    <input type="email" class="form-control" name="email" placeholder="Email" value="<?= $email ?>" required>
                 </div>
-                <div class="right">
-                    <a href="profile.php" class="btn btn-danger">Batal</a>
-                    <input type="submit" class="btn btn-success" name="edit" value="edit">
+                <div class="mt-4">
+                    <a href="profile.php" class="btn btn-danger tbl">Batal</a>
+                    <input type="submit" class="btn btn-success tbl" name="edit" value="Submit">
                 </div>
             </form>
         </div>
@@ -81,15 +101,21 @@ $stmt->close();
 </html>
 <?php
 
-$target_dir = "img/";
-$target_file = $target_dir . basename($_FILES["profile"]["name"]);
-$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+if (isset($_FILES['profile'])) {
+    $target_dir = "img/";
+    $target_file = $target_dir . basename($_FILES["profile"]["name"]);
+    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+}
 
 if (isset($_POST['edit'])) {
     $id = $_SESSION['id'];
     $nama = $_POST['nama'];
     $username = $_POST['username'];
     $email = $_POST['email'];
+
+    if($_FILES['profile']['name'] == null){
+        $_FILES['profile']['name'] = $photo;
+    }
 
     // Check if image file is a actual image or fake image
     move_uploaded_file($_FILES["profile"]["tmp_name"], $target_file);
